@@ -16,6 +16,6 @@ def detect(c):
     if (len(approx) == 4):
         (x, y, w, h) = cv2.boundingRect(approx)
         ar = w / float(h)
-        shape = None if ar >= 0.95 and ar <= 1.05 else "rectangle" 
+        shape = None if ar >= 0.95 and ar <= 1.05 else "rectangle"
     return shape
 
