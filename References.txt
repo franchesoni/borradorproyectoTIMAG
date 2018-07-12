@@ -1,0 +1,11 @@
+References
+
+Suzuki, S. and Abe, K., Topological Structural Analysis of Digitized Binary Images by Border Following. CVGIP 30 1, pp 32-46 (1985)
+
+https://www.hindawi.com/journals/tswj/2014/481312/
+
+https://github.com/horiken4/ellipse-detection	
+    Very Fast Ellipse Detection for Embedded Vision Applications
+    Clustering of Ellipses based on their Distinctiveness: An Aid to Ellipse Detection Algorithms
+    A Correct Set of Equations for the Real-time Ellipse Hough Transform Algorithm
+
