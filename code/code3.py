@@ -47,7 +47,3 @@ for i in [3, 4, 5, 6, 7, 8, 9, 10, 11]:
     rect = rectangles[ganamos]
     region = img[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2], :]
     cv2.imwrite('../images/regiones_UTE/region_ute{}.jpg'.format(i), region)
-#    cv2.rectangle(img, (rect[0],rect[1]), (rect[2]+rect[0],rect[3]+rect[1]), (0,0,255), 20)
-    
-#    plt.figure()
-#    plt.imshow(img)
