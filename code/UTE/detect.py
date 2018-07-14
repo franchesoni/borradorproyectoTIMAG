@@ -9,6 +9,10 @@ Created on Mon Jul  9 13:34:43 2018
 import cv2
 
 def detect(c):
+    """This function returns "rectangle" if the polygon that
+    approximates the contour passed in has 4 vertices and the aspect ratio of
+    the rectangle that bounds it is not that of a square. If this conditions
+    don't hold, the function returns None"""
     # initialize the shape name and approximate the contour
     shape = None
     peri = cv2.arcLength(c, True)
