@@ -12,23 +12,17 @@ import cv2
 from alinear_UTE import align
 plt.close('all')
 #%%
-#%%
 #Carga de archivos
 regions = []
 for i in [3, 4, 5, 6, 7, 8, 9, 10, 11]:
     filename = '../../images/regiones_UTE/region_ute{}.jpg'.format(i)
     img = cv2.imread(filename)
     regions.append(img)
-    
-del filename
 del img
-del i
 #%%
 img = cv2.cvtColor(regions[6], cv2.COLOR_BGR2GRAY)
 plt.figure(); plt.imshow(regions[6])
-
 #%%
-
 th3 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,51,5)
 kernel = np.ones((2,2),np.uint8)
 img2 = cv2.morphologyEx(th3, cv2.MORPH_ERODE, kernel)
