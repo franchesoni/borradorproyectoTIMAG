@@ -13,12 +13,16 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 plt.rcParams['image.cmap'] = 'gray'
+
+from skimage.transform import hough_ellipse
+from skimage.draw import ellipse_perimeter
 #%%
 maxCirculos=3
 #%% Carga de archivos
 
-filename = '../images/OSE/ose17b.jpg'
+filename = '../images/OSE/ose7b.jpg'
 img = cv2.imread(filename)
+img_out = img.copy()
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 plt.figure(); plt.imshow(gray)
@@ -39,15 +43,58 @@ kernel = np.ones((3,3))
 img_fin = cv2.morphologyEx(img_bin, cv2.MORPH_DILATE, kernel) 
 plt.figure(); plt.imshow(img_fin)
 
-#%%
+#%% Deteccion de circulos
 
 circles = cv2.HoughCircles(img_fin, cv2.HOUGH_GRADIENT, 2, 10, np.array([]), 40, 80, 5, 100)
 circulos=0
 if circles is not None:
   for c in circles[0]:
-     cv2.circle(img, (c[0],c[1]), c[2], (0,255,0),2)
+     cv2.circle(img_out, (c[0],c[1]), c[2], (0,255,0),2)
      circulos=circulos+1
      if(circulos>maxCirculos):
         break
 
-plt.figure(); plt.imshow(img)
+plt.figure(); plt.imshow(img_out)
+
+#%% Deteccion de elipses
+ellipses = hough_ellipse(255-img_fin, accuracy=20, threshold=250,
+                       min_size=100, max_size=120)
+ellipses.sort(order='accumulator')
+
+#%% Otra opcion
+
+#--- Find all the contours in the binary image ---
+_, contours,hierarchy = cv2.findContours(img_fin,2,1)
+cnt = contours
+big_contour = []
+max = 10
+for i in cnt:
+   area = cv2.contourArea(i) #--- find the contour having biggest area ---
+   if(area > max):
+       max = area
+       big_contour = i 
+
+final = cv2.drawContours(img_out, big_contour, -1, (0,255,0), 3)
+plt.figure(); plt.imshow(final)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
