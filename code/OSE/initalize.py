@@ -9,9 +9,10 @@ Created on Thu Jul 12 14:31:13 2018
 import numpy as np
 import matplotlib.pyplot as plt
 import cv2
+plt.rcParams['image.cmap'] = 'gray'
 
 #%% IMAGES LOAD
-img = cv2.imread('../../images/OSE/ose6.jpg')
+img = cv2.imread('../images/OSE/ose12b.jpg')
 rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 nothing = np.zeros_like(rgb)
 #%%

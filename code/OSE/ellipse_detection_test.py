@@ -13,10 +13,10 @@ from skimage import data, color, img_as_ubyte
 from skimage.feature import canny
 from skimage.transform import hough_ellipse
 from skimage.draw import ellipse_perimeter
-
+plt.rcParams['image.cmap'] = 'gray'
 
 #%% IMAGES LOAD
-img = cv2.imread('../../images/OSE/ose6.jpg')
+img = cv2.imread('../images/OSE/ose6.jpg')
 rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 edges = np.zeros_like(rgb)
 #%%
